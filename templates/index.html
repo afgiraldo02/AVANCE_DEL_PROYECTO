@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VINTAGE PROJECT</title>
+    <!-- Enlace a la hoja de estilos de Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Enlace a la hoja de estilos CSS específica de la página -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pagina_inicio.css') }}">
+</head>
+<body>
+
+    <!-- Sección del encabezado -->
+    <header class="header">
+        <div class="menu container">
+            <!-- Logo del sitio -->
+            <a href="#" class="logo">VP</a>
+            <!-- Checkbox para manejar el menú desplegable en móviles -->
+            <input type="checkbox" id="menu" /> 
+            <label for="menu">
+                <!-- Icono de menú para dispositivos móviles -->
+                <img src="{{ url_for('static', filename='imagenes/menu.png') }}" class="menu-icono" alt="menu">
+            </label>
+            <!-- Navegación principal del sitio -->
+            <nav class="navbar">
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Nosotros</a></li>
+                    <li><a href="#">Productos</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="header-content container">
+            <div class="header-txt">
+                <h1>VINTAGE PROJECT</h1>
+                <p>Nuestra compañía se dedica a la realización y fabricación de muebles personalizados y a la medida para todo tipo de ambientes.</p>
+                <a href="#" class="btn-1">Información</a>
+            </div>
+            <div class="header-img">
+                <img src="{{ url_for('static', filename='imagenes/imagen1.jpg') }}" alt="">
+            </div>
+        </div>
+    </header>
+
+    <section class="about container">
+        <div class="about-img">
+            <img src="{{ url_for('static', filename='imagenes/imagen2.jpg') }}" alt="">
+        </div>
+        <div class="about-txt">
+            <h2>Nosotros</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo delectus corporis eaque velit dolore ipsam cum fuga fugiat? Tempora nemo iure tempore beatae maiores, repellat architecto porro in nostrum optio?</p>
+            <br>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias fugit quis aspernatur, reprehenderit vero corporis nulla nobis adipisci eos, facere ducimus minus blanditiis maxime explicabo eligendi modi? Culpa, numquam alias?</p>
+        </div>
+    </section>
+
+    <!-- Sección "Productos" que muestra los diferentes tipos de productos ofrecidos -->
+    <main class="productos">
+        <h2>PRODUCTOS</h2>
+        <div class="productos-content container">
+            <div class="producto-1">
+                <i class="fa-sharp fa-solid fa-table"></i>
+                <h3>Mesas</h3>  
+            </div>
+            <div class="producto-1">
+                <i class="fa-sharp fa-solid fa-codepen"></i>
+                <h3>Estanterías</h3>
+            </div> 
+            <div class="producto-1">
+                <i class="fa-sharp fa-solid fa-shop"></i>
+                <h3>Escritorios</h3>
+            </div>
+            <div class="producto-1">
+                <i class="fa-sharp fa-solid fa-ruler-combined"></i>
+                <h3>Sillas</h3>
+            </div>
+        </div>
+    </main>
+
+    <!-- Sección del formulario de inicio de sesión -->
+    <section class="formulario container">
+        <!-- Formulario que envía datos para el inicio de sesión -->
+        <form action="{{ url_for('login') }}" method="post" autocomplete="off">
+            <h2>INICIO DE SESIÓN</h2>
+            <!-- Mensajes flash para mostrar errores o confirmaciones -->
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+            <div class="input-group">
+                <!-- Campo de entrada para el nombre de usuario -->
+                <div class="input-container">
+                    <input type="text" name="username" placeholder="usuario">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <!-- Campo de entrada para la contraseña -->
+                <div class="input-container">
+                    <input type="password" name="password" placeholder="Contraseña">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <!-- Botón para enviar el formulario -->
+                <button type="submit" class="btn-2">Ingresar</button>
+                <!-- Enlace para registrarse como nuevo usuario -->
+                <a href="{{ url_for('register') }}" class="btn-3">Nuevo usuario</a>
+            </div>
+        </form>
+    </section>
+
+    <!-- Pie de página del sitio -->
+    <footer class="footer">
+        <div class="footer content container">
+            <div class="link">
+                <a href="#" class="logo">VP</a>
+            </div>
+            <div class="link">
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Nosotros</a></li>
+                    <li><a href="#">Servicio</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
+
+
+
+
+
+
