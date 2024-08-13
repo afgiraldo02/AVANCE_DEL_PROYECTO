@@ -1,37 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VINTAGE PROJECT</title>
-    <!-- Enlace a la hoja de estilos de Font Awesome para iconos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Enlace a la hoja de estilos CSS específica de la página -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/pagina_inicio.css') }}">
-</head>
-<body>
-
-    <!-- Sección del encabezado -->
-    <header class="header">
-        <div class="menu container">
-            <!-- Logo del sitio -->
-            <a href="#" class="logo">VP</a>
-            <!-- Checkbox para manejar el menú desplegable en móviles -->
-            <input type="checkbox" id="menu" /> 
-            <label for="menu">
-                <!-- Icono de menú para dispositivos móviles -->
-                <img src="{{ url_for('static', filename='imagenes/menu.png') }}" class="menu-icono" alt="menu">
-            </label>
-            <!-- Navegación principal del sitio -->
-            <nav class="navbar">
-                <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Nosotros</a></li>
-                    <li><a href="#">Productos</a></li>
-                    <li><a href="#">Contacto</a></li>
-                </ul>
-            </nav>
-        </div>
+{% include 'sitio/cabecera.html' %}
         <div class="header-content container">
             <div class="header-txt">
                 <h1>VINTAGE PROJECT</h1>
@@ -112,26 +79,8 @@
             </div>
         </form>
     </section>
+{% include 'sitio/pie.html' %}
 
-    <!-- Pie de página del sitio -->
-    <footer class="footer">
-        <div class="footer content container">
-            <div class="link">
-                <a href="#" class="logo">VP</a>
-            </div>
-            <div class="link">
-                <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Nosotros</a></li>
-                    <li><a href="#">Servicio</a></li>
-                    <li><a href="#">Contacto</a></li>
-                </ul>
-            </div>
-        </div>
-    </footer>
-
-</body>
-</html>
 
 
 

@@ -18,7 +18,7 @@ app.secret_key = 'andres'
 # Ruta para la página principal
 @app.route('/')
 def home():
-    return render_template('index.html')  # Renderiza la plantilla HTML 'index.html'
+    return render_template('sitio/index.html')  # Renderiza la plantilla HTML 'index.html'
 
 # Ruta para el manejo del login
 @app.route('/login', methods=["GET", "POST"])
@@ -53,7 +53,7 @@ def login():
 # Ruta para mostrar la página de registro
 @app.route('/register')
 def register():
-    return render_template('registro.html')  # Renderiza la plantilla HTML 'registro.html'
+    return render_template('sitio/registro.html')  # Renderiza la plantilla HTML 'registro.html'
 
 # Ruta para manejar la creación de un nuevo usuario
 @app.route('/crear-registro', methods=["POST"])
@@ -74,12 +74,48 @@ def crear_registro():
 # Ruta para la página del administrador
 @app.route('/admin')
 def admin():
-    return render_template('admin.html')  # Renderiza la plantilla HTML 'admin.html'
+    return render_template('admin/index.html')  # Renderiza la plantilla HTML 'admin.html'
 
 # Ruta para la página del usuario
 @app.route('/usuario')
 def usuario():
-    return render_template('usuario.html')  # Renderiza la plantilla HTML 'usuario.html'
+    return render_template('usuarios/usuario.html')  # Renderiza la plantilla HTML 'usuario.html'
+
+
+# Nuevas rutas para API (JSON)
+
+# Registro vía API (JSON)
+@app.route('/AVANCE_DEL_PROYECTO/register', methods=['POST'])
+def api_register():
+    data = request.get_json()
+    correo = data.get('correo')
+    password = data.get('password')
+    
+    cur = mysql.connection.cursor()
+    cur.execute("INSERT INTO usuarios (correo, password, id_rol) VALUES (%s, %s, '2')", (correo, password))
+    mysql.connection.commit()
+    
+    return jsonify({"message": "Usuario registrado con éxito"}), 201
+
+# Login vía API (JSON)
+@app.route('/AVANCE_DEL_PROYECTO/login', methods=['POST'])
+def api_login():
+    data = request.get_json()
+    correo = data.get('correo')
+    password = data.get('password')
+    
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT * FROM usuarios WHERE correo = %s AND password = %s', (correo, password,))
+    account = cur.fetchone()
+    
+    if account:
+        session['logueado'] = True
+        session['id'] = account['id']
+        session['id_rol'] = account['id_rol']
+        
+        return jsonify({"message": "Login exitoso", "id_rol": session['id_rol']}), 200
+    else:
+        return jsonify({"message": "Credenciales incorrectas"}), 401
 
 # Punto de entrada de la aplicación
 if __name__ == '__main__':
